@@ -39,6 +39,13 @@ class EducationalTransformer extends TransformerAbstract
             'board_uni' => $model->board_uni,
             'yearofpasing' => $model->yearofpasing,
             'percentage' => $model->percentage,
+            'tc_course' => $model->tc_course,
+            'tc_institution' => $model->tc_institution,
+            'tc_year' => $model->tc_year,
+            'tc_level' => $model->tc_level,
+            'extra_co_activities' => $model->extra_co_activities,
+            'curricular_achivements' => $model->curricular_achivements,
+            'tc_hobbies' => $model->tc_hobbies,
             'created_at' => $model->created_at->toIso8601String(),
             'updated_at' => $model->updated_at->toIso8601String(),
         ];

@@ -8,7 +8,7 @@ use App\Transformers\Profile\ChildrenTransformer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ChildrendetailController extends Controller
+class SocialController extends Controller
 {
     //
     private $validateFiled = [

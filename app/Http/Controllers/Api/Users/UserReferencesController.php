@@ -4,16 +4,22 @@ namespace App\Http\Controllers\Api\Users;
 
 use App\Exceptions\StoreResourceFailedException;
 use App\Http\Controllers\Controller;
-use App\Transformers\Users\UserTransformer;
+use App\Models\UserReferences;
+//use App\Transformers\Profile\ReferencesTransformer;
+use App\Transformers\Profile\ReferencesTransformer;
 use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ProfileController extends Controller
+class UserReferencesController extends Controller
 {
     public function index()
     {
-        return fractal(Auth::user(), new UserTransformer())->respond();
+
+      $dataDetails = auth()->user()->relation;
+    
+        return fractal($dataDetails, new ReferencesTransformer())->respond();
+
     }
 
     public function profileLink()
@@ -60,4 +66,43 @@ class ProfileController extends Controller
 
         return fractal($user->fresh(), new UserTransformer())->respond();
     }
+
+    public function createRef(Request $request)
+    {
+
+    $pr =  new UserReferences();
+    $pr->user_id = Auth::user()->id;
+    $pr->fullname= $request->fullname;
+    $pr->relation= $request->relation;
+    $pr->sex= $request->sex;
+    $pr->age= $request->age;
+    $pr->occupation= $request->occupation;
+    $pr->location= $request->location;
+    $pr->contact_number= $request->contact_number;
+    $pr->address= $request->address;
+    $pr->save();
+    
+    return fractal($pr, new ReferencesTransformer())->respond(201);
+    }
+
+    public function updateRef(Request $request, $uuid)
+    {
+    $pr =  new UserReferences();
+    $pr = $pr->byUuid($uuid)->firstOrFail();
+    $pr->user_id = Auth::user()->id;
+    $pr->fullname= $request->fullname;
+    $pr->relation= $request->relation;
+    $pr->sex= $request->sex;
+    $pr->age= $request->age;
+    $pr->occupation= $request->occupation;
+    $pr->location= $request->location;
+    $pr->contact_number= $request->contact_number;
+    $pr->address= $request->address;
+    $pr->save();
+    
+    return fractal($pr, new ReferencesTransformer())->respond(201);
+    }
+
+    
+
 }

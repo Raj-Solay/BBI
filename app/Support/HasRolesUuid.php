@@ -14,10 +14,11 @@ trait HasRolesUuid
      */
     protected function getStoredRole($role): Role
     {
+    
         if (is_string($role)) {
-            return app(RoleEntity::class)->where('name', $role)->orWhere('uuid', $role)->first();
+            
+            $role= app(RoleEntity::class)->where('name', $role)->orWhere('uuid', $role)->first();
         }
-
         return $role;
     }
 }

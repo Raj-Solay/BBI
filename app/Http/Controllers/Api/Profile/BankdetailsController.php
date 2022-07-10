@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Profile;
 use App\Http\Controllers\Controller;
 use App\Models\Bankdetail;
 use App\Transformers\Profile\BankTransformer;
+use App\Transformers\Profile\InterestTransformer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,6 +21,14 @@ class BankdetailsController extends Controller
         $bankDetails = auth()->user()->bankDetails;
         return fractal($bankDetails, new BankTransformer())->respond();
     }
+
+    public function intrest(Request $request)
+    {
+        $intrest = auth()->user()->interests;
+        return fractal($intrest, new InterestTransformer())->respond(201);
+        
+    }
+
     public function store(Request $request)
     {
         $this->validate($request, [

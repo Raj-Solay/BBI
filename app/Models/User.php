@@ -69,6 +69,11 @@ class User extends Authenticatable
 
         return $model;
     }
+
+    public function Personal()
+    {
+        return $this->hasMany(Personal::class);
+    }
     public function bankDetails()
     {
         return $this->hasMany(bankDetail::class);
@@ -88,5 +93,53 @@ class User extends Authenticatable
     public function healthdetail()
     {
         return $this->hasMany(Healthdetail::class);
+    }
+
+    public function relation()
+    {
+        return $this->hasMany(UserReferences::class);
+    }
+
+    public function interests()
+    {
+        return $this->hasMany(UserExpressionInterest::class);
+    }
+
+    public function checklist()
+    {
+        return $this->hasMany(UserChecklist::class);
+    }
+
+    public function social()
+    {
+        return $this->hasMany(UserSocialIdentityDetail::class);
+    }
+
+    public function authorization()
+    {
+        return $this->hasMany(Authorization::class);
+    }
+    public function document()
+    {
+        return $this->hasMany(UserDocument::class);
+    }
+
+    public function PersonalReference(){
+        return $this->hasMany(PersonalReference::class);
+
+    }
+
+    public function Staff(){
+        return $this->hasMany(StaffDetail::class);
+    }
+    public function Location(){
+        return $this->hasMany(Location::class);
+    }
+
+    public function finability(){
+        return $this->hasMany(UserFinability::class);
+    }
+    public function agreements(){
+        return $this->hasMany(Agreement::class);
     }
 }

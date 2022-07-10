@@ -14,7 +14,7 @@ class UserTransformer extends TransformerAbstract
      * @var array
      */
     protected $defaultIncludes = ['roles'];
-
+    
     /**
      * @param \App\Model\User $model
      * @return array
@@ -37,6 +37,7 @@ class UserTransformer extends TransformerAbstract
      */
     public function includeRoles(User $model)
     {
+         
         return $this->collection($model->roles, new RoleTransformer());
     }
 }

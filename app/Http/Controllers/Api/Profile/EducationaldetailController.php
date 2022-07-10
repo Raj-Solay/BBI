@@ -37,7 +37,18 @@ class EducationaldetailController extends Controller
         $data->board_uni = $request->board_uni;
         $data->yearofpasing = $request->yearofpasing;
         $data->percentage = $request->percentage;
+
+        $data->tc_course=$request->tc_course;
+        $data->tc_institution= $request->tc_institution;
+        $data->tc_year= $request->tc_year;
+        $data->tc_level=$request->tc_level;
+        $data->extra_co_activities=$request->extra_co_activities;
+        $data->curricular_achivements=$request->curricular_achivements;
+        $data->tc_hobbies=$request->tc_hobbies;
         $data->save();
+
+        
+
         //$data = $this->model->create($request->all());
 
         return fractal($data, new EducationalTransformer())->respond(201);

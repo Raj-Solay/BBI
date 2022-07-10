@@ -28,6 +28,26 @@ class UploadFileController extends Controller
             'type' => 'image',
             'extension' => 'png',
         ],
+        'video/mp4' => [
+            'type' => 'video',
+            'extension' => 'mp4',
+            
+        ],
+        'video/mp3' => [
+            'type' => 'video',
+            'extension' => 'mp3',
+            
+        ],
+        'audio/mp4' => [
+            'type' => 'video',
+            'extension' => 'mp4',
+            
+        ],
+        'audio/mp3' => [
+            'type' => 'video',
+            'extension' => 'mp3',
+           
+        ],
     ];
 
     protected $client;
@@ -123,6 +143,8 @@ class UploadFileController extends Controller
 
     protected function validateMime($mime)
     {
+     //   echo $mime;
+     //   die();
         if (! array_key_exists($mime, $this->validMimes)) {
             throw new StoreResourceFailedException('Validation Error', [
                 'Content-Type' => 'The Content Type sent is not valid',
@@ -132,7 +154,7 @@ class UploadFileController extends Controller
 
     protected function validateBodySize($contentLength, $content)
     {
-        if ($contentLength > config('files.maxsize', 1000000) || mb_strlen($content) > config('files.maxsize', 1000000)) {
+        if ($contentLength > config('files.maxsize', 1000000000) || mb_strlen($content) > config('files.maxsize', 1000000000)) {
             throw new BodyTooLargeException();
         }
     }

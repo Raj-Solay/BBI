@@ -8,7 +8,7 @@ use App\Transformers\Profile\HealthTransformer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class HealthdetailController extends Controller
+class HealthDetailController extends Controller
 {
     //
     /* private $validateFiled = [
@@ -39,6 +39,7 @@ class HealthdetailController extends Controller
     }
     public function index(Request $request)
     {
+        
         $dataDetails = auth()->user()->healthdetail;
         return fractal($dataDetails, new HealthTransformer())->respond();
     }
@@ -46,7 +47,7 @@ class HealthdetailController extends Controller
     {
         $this->validate($request, $this->validateFiled);
         $data =  new Healthdetail;
-        $data->user_id = Auth::user()->id;;
+        $data->user_id = Auth::user()->id;
         $data->birthidentificationmarks = $request->birthidentificationmarks;
         $data->birthidentificationmarks2 = $request->birthidentificationmarks2;
         $data->handuse = $request->handuse;
@@ -87,4 +88,23 @@ class HealthdetailController extends Controller
 
         return response()->json(null, 204);
     }
+
+
+public function refrance(){
+
+    $jayParsedAry = [
+        "fullname" => "43", 
+        "relation" => "Father", 
+        "sex" => "Male", 
+        "age" => "33", 
+        "occupation" => "22", 
+        "location" => "22", 
+        "contact_number" => "22", 
+        "address" => "2" 
+     ];      
+
+     echo json_encode($jayParsedAry);
+    
+}
+
 }
